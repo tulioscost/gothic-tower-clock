@@ -5,12 +5,12 @@
   "version": "1.0.0",
   "authors": [
     {
-      "name": "Comunidade — módulo personalizado"
+      "name": "tulioscost"
     }
   ],
   "compatibility": {
     "minimum": "14",
-    "verified": "14",
+    "verified": "14.369",
     "maximum": "14"
   },
   "esmodules": [
@@ -26,8 +26,11 @@
       "path": "lang/pt-BR.json"
     }
   ],
-  "flags": {
-    "allowBugReporter": true
-  },
+  "socket": true,
+  "url": "https://github.com/tulioscost/gothic-tower-clock",
+  "manifest": "https://raw.githubusercontent.com/tulioscost/gothic-tower-clock/main/module.json",
+  "download": "https://github.com/tulioscost/gothic-tower-clock/releases/download/v1.0.0/gothic-tower-clock.zip",
+  "changelog": "https://github.com/tulioscost/gothic-tower-clock/releases/tag/v1.0.0",
+  "bugs": "https://github.com/tulioscost/gothic-tower-clock/issues",
   "readme": "README.md"
 }
