@@ -1,0 +1,33 @@
+{
+  "id": "gothic-tower-clock",
+  "title": "Relógio da Torre Gótica",
+  "description": "Relógio de torre gótica junto ao chat, calendário e avanço temporal controlados pelo GM, badaladas às 00:00 e 12:00 e sincronização multiplayer.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Comunidade — módulo personalizado"
+    }
+  ],
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14",
+    "maximum": "14"
+  },
+  "esmodules": [
+    "scripts/main.mjs"
+  ],
+  "styles": [
+    "styles/clock.css"
+  ],
+  "languages": [
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json"
+    }
+  ],
+  "flags": {
+    "allowBugReporter": true
+  },
+  "readme": "README.md"
+}

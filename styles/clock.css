@@ -1,0 +1,153 @@
+/* O relógio é uma sobreposição flutuante: não modifica o DOM interno do chat. */
+#gtc-root {
+  --gtc-width: 220px;
+  --gtc-gold: #c5a870;
+  position: fixed;
+  z-index: 62;
+  width: var(--gtc-width);
+  user-select: none;
+  color: #e1d3bd;
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.2;
+  pointer-events: none;
+}
+#gtc-root button, #gtc-root input, #gtc-root select { pointer-events: auto; }
+#gtc-root [hidden] { display: none !important; }
+#gtc-root .gtc-grip {
+  height: 19px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: #bca984;
+  font-size: 9px;
+  letter-spacing: .15em;
+  text-shadow: 0 1px 3px #000;
+  cursor: move;
+  touch-action: none;
+  pointer-events: auto;
+}
+#gtc-root .gtc-artbox { position: relative; width: 100%; pointer-events: auto; }
+#gtc-root .gtc-art { display: block; width: 100%; height: auto; pointer-events: none; filter: drop-shadow(0 8px 12px rgba(0, 0, 0, .55)); }
+#gtc-root .gtc-dial {
+  position: absolute;
+  width: 22.9%;
+  height: auto;
+  aspect-ratio: 1;
+  left: 49.6%;
+  top: 40.1%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 1px 2px #000);
+  pointer-events: none;
+}
+#gtc-root .gtc-dial-edge { fill: #202021; stroke: #8d7b61; stroke-width: 2.5; }
+#gtc-root .gtc-numerals { fill: #f5ead0; font-size: 12px; font-weight: bold; font-family: Georgia, serif; }
+#gtc-root .gtc-hour-hand { fill: #dcc083; stroke: #392c19; stroke-width: .6; }
+#gtc-root .gtc-minute-hand { fill: #f0d69a; stroke: #392c19; stroke-width: .55; }
+#gtc-root .gtc-second-hand { fill: #9f4736; }
+#gtc-root .gtc-tools {
+  position: absolute;
+  top: 23%;
+  right: 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  opacity: .28;
+  transition: opacity .15s ease;
+}
+#gtc-root:hover .gtc-tools, #gtc-root:focus-within .gtc-tools {opacity: 1;}
+#gtc-root .gtc-tools button {
+  width: 23px;
+  height: 23px;
+  padding: 2px;
+  font-size: 11px;
+  border-radius: 50%;
+  border: 1px solid #77674f;
+  color: #ddcb9f;
+  background: rgba(14, 15, 18, .89);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#gtc-root .gtc-tools button:hover {background: #51422e;}
+#gtc-root .gtc-plaque {
+  position: relative;
+  width: 75%;
+  padding: 5px 7px 7px;
+  margin: -3px auto 0;
+  text-align: center;
+  box-sizing: border-box;
+  background: linear-gradient(125deg, #111315, #292428 50%, #111315);
+  border: 1px solid #846e49;
+  box-shadow: inset 0 0 0 2px #1e1d1c, 0 3px 10px #0009;
+  border-radius: 4px;
+  pointer-events: auto;
+}
+#gtc-root .gtc-date {font-size: 10px; letter-spacing: .1em; color: #b7ad9b; margin-bottom: 3px;}
+#gtc-root .gtc-readout {color: #e7d29c; font-size: 15px; letter-spacing: .12em; font-variant-numeric: tabular-nums;}
+#gtc-root .gtc-paused {font-size: 11px; color: #a95f53;}
+#gtc-root.gtc-ringing .gtc-dial {animation: gtc-ring-shiver .24s linear 0s 10 alternate;}
+#gtc-root.gtc-ringing .gtc-plaque {box-shadow: 0 0 20px #bda37280, inset 0 0 0 2px #1e1d1c;}
+@keyframes gtc-ring-shiver {from {transform:translate(-50%,-50%) rotate(-1.5deg);} to {transform:translate(-50%,-50%) rotate(1.5deg);}}
+#gtc-root .gtc-settings {
+  position: fixed;
+  z-index: 100;
+  box-sizing: border-box;
+  width: min(298px, calc(100vw - 12px));
+  max-height: calc(100vh - 15px);
+  overflow: auto;
+  padding: 13px 15px 14px;
+  color: #e9dcc5;
+  user-select: text;
+  background: linear-gradient(145deg, #27242a, #17191c);
+  border: 1px solid #8e7752;
+  border-radius: 7px;
+  box-shadow: 0 8px 26px #000e, inset 0 0 0 3px #17171c;
+  pointer-events: auto;
+  font: 12px/1.4 system-ui, sans-serif;
+}
+#gtc-root .gtc-panel-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #dac18c;
+  font: bold 13px Georgia, serif;
+  letter-spacing: .075em;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #615039;
+  padding-bottom: 8px;
+}
+#gtc-root .gtc-panel-title button {
+  background: transparent; color: #e5d4b0; border: 0; font-size: 23px;
+  cursor: pointer; line-height: 1; width: 25px; height: 24px;
+}
+#gtc-root .gtc-settings label {display: block; margin: 8px 0;}
+#gtc-root .gtc-settings input:not([type="checkbox"]):not([type="range"]),
+#gtc-root .gtc-settings select {
+  display: block; width: 100%; margin-top: 3px; box-sizing: border-box;
+  border: 1px solid #6d593e; border-radius: 3px;
+  color: #eee0c8; background: #141518;
+  padding: 5px 6px; height: 30px; min-height: 30px;
+  color-scheme: dark;
+}
+#gtc-root .gtc-settings input[type="range"] {display: block; width: 100%; height: 20px; accent-color: #ba965c;}
+#gtc-root .gtc-settings input[type="checkbox"] {accent-color: #b8955e; vertical-align: middle;}
+#gtc-root .gtc-check {display: flex !important; gap: 6px; align-items: center;}
+#gtc-root .gtc-actions {display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0;}
+#gtc-root .gtc-actions button {
+  flex: 1 1 auto; min-height: 30px; padding: 5px 7px;
+  border: 1px solid #7d6346; color: #e5d6b9;
+  border-radius: 4px; background: #353139; cursor: pointer;
+  font: 11px system-ui, sans-serif;
+}
+#gtc-root .gtc-actions button:hover {background: #594a39;}
+#gtc-root .gtc-actions button.gtc-primary {background: #675333; color: white;}
+#gtc-root .gtc-adjust-title {border-top: 1px solid #584c3a; padding-top: 8px; color:#ccb485; font-size: 10px; letter-spacing:.1em;}
+#gtc-root .gtc-settings small {color: #b5a99c; display: block; font-size: 10px; line-height: 1.4;}
+@media (max-width: 650px) {
+  #gtc-root .gtc-tools {opacity:.8;}
+}
+@media (prefers-reduced-motion: reduce) {
+  #gtc-root.gtc-ringing .gtc-dial {animation: none;}
+}
